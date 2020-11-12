@@ -1,26 +1,29 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import './asset/scss/app.scss';
+import { Home, Cart } from './pages/index';
+import { Switch, Route } from 'react-router-dom';
+import { Headers } from './container/index';
+import { connect } from 'react-redux';
+import { Pizza } from './redux/action/index';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+function App(props){
+	const { totalPrice, totalPurchase} = props
+	React.useEffect(() => {
+		Pizza.preloadProperty()
+	},[])
+	
+	return (
+		<div className="App">
+			<div className="wrapper">
+				<Headers totalPrice = {totalPrice} totalPurchase = {totalPurchase}/>
+				<div className="content">
+					<Switch>
+						<Route path = "/" exact component = {Home}/>
+						<Route path = "/cart" exact component = {Cart}/>
+					</Switch>
+				</div>
+			</div>
+		</div>
+	)
 }
-
-export default App;
+export default React.memo(connect((state) => {return { totalPrice: state.cart.totalPrice, totalPurchase: state.cart.totalPurchase}})(App));
