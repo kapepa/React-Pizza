@@ -1,29 +1,8 @@
 const initialStore = {
-	totalPrice: 330,
-	totalPurchase: 3,
-	purchase: {
-		3:{
-			name:"Кисло-сладкий цыпленок",
-			imageUrl: "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/af553bf5-3887-4501-b88e-8f0f55229429.jpg",
-			традиционное: {
-				26: {
-					count: 1,
-					price: 330,
-					worth: 330,
-				},
-				32: {
-					count: 2,
-					price: 430,
-					worth: 860,
-				},
-				cost: 1190,
-				quantity: 3,
-			},
-			fullCost: 1190,
-			fullQuatity: 3
-		},
-	},
-	typeName: ["традиционное"]
+	totalPrice: 0,
+	totalPurchase: 0,
+	purchase: {},
+	typeName: []
 }
 
 function establishSumm(obj){
